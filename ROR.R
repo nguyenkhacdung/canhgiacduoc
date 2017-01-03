@@ -2,8 +2,10 @@
 library(dplyr)
 library(ggplot2)
 ### OR calculation with CI 95%
-OR95=function(x){
-  return(exp(cbind(OR=coef(x), confint(x))))
+OR95=function(mod){
+  return(exp(cbind(OR=coef(mod), confint(mod)))%>% #khoang tin cay 95% cua ROR tinh toan tu mo hinh
+           as.data.frame() %>% #chuyen thanh data frame de doi ten bien
+           setNames(., c("OR", "lower","upper"))) # doi ten bien
   }
 
 ### Plot ROR with CI 95%
