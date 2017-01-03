@@ -9,7 +9,7 @@ OR95=function(mod){
   }
 
 ### Plot ROR with CI 95%
-plotROR=function(df){
+plotROR=function(df,Year){
   localenv = environment()#If fun is a function or a formula then environment(fun) returns the environment associated with that function or formula.
   # If fun is NULL then the current evaluation environment is returned.
   ggplot(df,aes(x=Cepha), environment = localenv ) + 
@@ -17,7 +17,9 @@ plotROR=function(df){
   geom_point( aes(y=OR),size=3, shape=21, fill="white") + # 21 is filled circle
   xlab(NULL) +
   ylab("Odd Ratios Adjusted") +
+  ggtitle(paste0("ROR (Adj) of  antibiotic induced Shock Jan.2010-Dec.",Year))+
   geom_hline(yintercept=1, color="red", alpha=0.4,lwd=1.5) +
-  coord_flip()+
-  theme_bw() + ylim(0,8) 
+  
+  theme_bw() + #ylim(0,8) 
+  coord_flip(ylim=c(0,10)) 
 }
