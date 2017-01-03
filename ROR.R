@@ -1,5 +1,6 @@
 #FUNCTION#
-
+library(dplyr)
+library(ggplot2)
 ### OR calculation with CI 95%
 OR95=function(x){
   return(exp(cbind(OR=coef(x), confint(x))))
